@@ -7,14 +7,14 @@ struct CountsBySoH {
   int failed;
 };
 
-struct CountsBySoH countBatteriesByHealth(int presentCapacities, int nBatteries) {
+struct CountsBySoH countBatteriesByHealth(const int* presentCapacities, int nBatteries) {
   struct CountsBySoH counts = {0, 0, 0};
   int SoH=100*(presentCapacities/nBatteries);
   if(SoH>80 && SoH<=100)
     counts.healthy++;
-  elseif(SoH>62 && SoH<=80)
+  else if(SoH>62 && SoH<=80)
     counts.exchange++;
-  elseif(SoH<=62)
+  else if(SoH<=62)
     counts.failed++;
   return counts;
 }
