@@ -8,7 +8,7 @@ struct CountsBySoH {
 };
 
 struct CountsBySoH countBatteriesByHealth(int presentCapacities, int nBatteries) {
-  struct CountsBySoH counts;
+  struct CountsBySoH counts = {0,0,0};
   int ratedcapacities=120;
   int SoH=(presentCapacities/ratedcapacities)*100.0;
   if(SoH>80 && SoH<=100)
