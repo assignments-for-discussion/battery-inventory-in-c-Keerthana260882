@@ -7,24 +7,21 @@ struct CountsBySoH {
   int failed;
 };
 
-struct CountsBySoH countBatteriesByHealth(int presentCapacities, int nBatteries) {
+int countBatteriesByHealth(int presentCapacities, int nBatteries) {
   struct CountsBySoH counts = {0, 0, 0};
   int SoH=100*(presentCapacities/nBatteries);
   if(SoH>80 && SoH<=100)
     counts.healthy++;
-  elseif(SoH>62 && SoH<=80)
+  else if(SoH>62 && SoH<=80)
     counts.exchange++;
-  elseif(SoH<=62)
+  else if(SoH<=62)
     counts.failed++;
   return counts;
 }
 
-  return counts;
-}
-
 void testBucketingByHealth() {
-  const int presentCapacities[] = {113, 116, 80, 95, 92, 70};
-  const int numberOfBatteries = sizeof(presentCapacities) / sizeof(presentCapacities[0]);
+  int presentCapacities[] = {113, 116, 80, 95, 92, 70};
+  int numberOfBatteries = sizeof(presentCapacities) / sizeof(presentCapacities[0]);
   printf("Counting batteries by SoH...\n");
   struct CountsBySoH counts = countBatteriesByHealth(presentCapacities, numberOfBatteries);
   assert(counts.healthy == 2);
